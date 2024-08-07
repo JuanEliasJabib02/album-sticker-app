@@ -16,8 +16,10 @@ export default function NavItem({ href, label, icon }: NavItemProps) {
 			<Link
 				to={href}
 				className={clsx(
-					'flex items-center py-4 px-2 rounded-lg font-medium text-foreground',
-					isActive ? 'bg-primary text-primary-foreground' : null
+					'flex items-center py-4 px-2 rounded-lg font-medium',
+					isActive
+						? 'bg-primary text-primary-foreground'
+						: 'bg-muted text-muted-foreground'
 				)}
 			>
 				{icon && <span className='mr-2'>{icon}</span>}
