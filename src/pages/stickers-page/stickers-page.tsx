@@ -1,3 +1,3 @@
 export default function StickersPage() {
-	<div>Home page</div>;
+	return <div>Stickers page</div>;
 }

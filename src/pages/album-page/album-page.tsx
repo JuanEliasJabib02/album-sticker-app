@@ -1,8 +1,9 @@
-import { useAlbumStore } from '../../store/album-store';
+import Album from '../../components/album/album';
 
 export default function AlbumPage() {
-	const { album } = useAlbumStore();
-
-	console.log(album);
-	return <div>Album page</div>;
+	return (
+		<div className='bg-red-500'>
+			<Album />
+		</div>
+	);
 }
