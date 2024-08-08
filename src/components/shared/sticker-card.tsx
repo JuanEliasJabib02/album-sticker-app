@@ -31,7 +31,7 @@ export default function StickerCard({
 						isSpecial ? 'bg-purple-500' : 'bg-secondary'
 					)}
 				>
-					Special
+					{isSpecial ? 'Special' : 'Regular'}
 				</p>
 			</CardFooter>
 		</Card>

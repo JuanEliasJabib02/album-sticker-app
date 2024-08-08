@@ -3,7 +3,9 @@ Characters: 82 stickers
 Ships: 36 stickers */
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import CharacterList from './characters-list';
 import MovieList from './movie-list';
+import ShipList from './ships-list';
 
 export default function Album() {
 	return (
@@ -16,8 +18,12 @@ export default function Album() {
 			<TabsContent value='movies'>
 				<MovieList />
 			</TabsContent>
-			<TabsContent value='characters'>Characters content</TabsContent>
-			<TabsContent value='ships'>Ships</TabsContent>
+			<TabsContent value='characters'>
+				<CharacterList />
+			</TabsContent>
+			<TabsContent value='ships'>
+				<ShipList />
+			</TabsContent>
 		</Tabs>
 	);
 }
