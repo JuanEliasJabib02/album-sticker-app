@@ -21,3 +21,9 @@ export interface Pack {
 	state: 'available' | 'locked' | 'opened';
 	timer: number;
 }
+
+export interface PackConfig {
+	movies: number;
+	characters: number;
+	starships: number;
+}
