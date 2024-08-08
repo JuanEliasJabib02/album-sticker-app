@@ -44,7 +44,7 @@ const albumSlice: StateCreator<
 				...state.album,
 				[section]: {
 					...state.album[section],
-					[stickerId]: null,
+					[stickerId]: state.album[section][stickerId],
 				},
 			},
 		}));

@@ -24,7 +24,6 @@ export default function PackSticker({
 	onAdd: () => void;
 	onRemove: () => void;
 }) {
-	const [ctaWasUsed, setCtaWasUsed] = useState(false);
 	const { album } = useAlbumStore(state => ({
 		album: state.album,
 		addStickerToAlbum: state.addStickerToAlbum,
@@ -35,6 +34,7 @@ export default function PackSticker({
 		type === 'Movie' ? 'movies' : type === 'Character' ? 'characters' : 'ships';
 
 	const exist = Boolean(album[section][id]);
+	const [isAdded, setIsAdded] = useState(exist);
 
 	return (
 		<Card className='max-w-xs'>
@@ -48,18 +48,26 @@ export default function PackSticker({
 			<CardFooter className='flex flex-col gap-4 items-start'>
 				<p className='p-2 bg-purple-500 rounded-lg'>Special</p>
 				<div className='w-full flex justify-center'>
-					{exist && !ctaWasUsed ? (
+					{!isAdded && exist && (
 						<Button
-							variant={'destructive'}
+							variant={'secondary'}
 							onClick={() => {
 								onRemove();
-								setCtaWasUsed(true);
+								setIsAdded(true);
 							}}
 						>
 							Discard
 						</Button>
-					) : (
-						<Button onClick={onAdd}>Add to album</Button>
+					)}
+					{!isAdded && !exist && (
+						<Button
+							onClick={() => {
+								onAdd();
+								setIsAdded(true);
+							}}
+						>
+							Add to album
+						</Button>
 					)}
 				</div>
 			</CardFooter>
