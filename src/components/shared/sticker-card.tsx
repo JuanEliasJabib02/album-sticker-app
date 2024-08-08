@@ -1,24 +1,38 @@
+import { cn } from '../../lib/utils';
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '../ui/card';
 
-export default function StickerCard() {
+export default function StickerCard({
+	title,
+	isSpecial,
+	id,
+}: {
+	id: number;
+	title: string;
+	isSpecial: boolean;
+}) {
 	return (
-		<Card>
+		<Card className='min-h-52'>
 			<CardHeader>
-				<CardTitle>A New Hope</CardTitle>
-				<CardDescription>Movie</CardDescription>
+				<CardTitle>{title}</CardTitle>
 			</CardHeader>
 			<CardContent>
-				<p>ID number: 1</p>
+				<p>ID number: {id}</p>
 			</CardContent>
 			<CardFooter>
-				<p className='p-2 bg-purple-500 rounded-lg'>Special</p>
+				<p
+					className={cn(
+						'p-2 rounded-lg',
+						isSpecial ? 'bg-purple-500' : 'bg-secondary'
+					)}
+				>
+					Special
+				</p>
 			</CardFooter>
 		</Card>
 	);

@@ -1,3 +1,5 @@
+import { Character, Film, Starship } from '../services/starwar-api-interfaces';
+
 export interface Sticker {
 	id: number;
 	name: string;
@@ -5,9 +7,9 @@ export interface Sticker {
 }
 
 export interface Album {
-	movies: Record<number, Sticker | null>;
-	characters: Record<number, Sticker | null>;
-	ships: Record<number, Sticker | null>;
+	movies: Record<number, Film | null>;
+	characters: Record<number, Character | null>;
+	ships: Record<number, Starship | null>;
 }
 
 export const initialAlbumState: Album = {

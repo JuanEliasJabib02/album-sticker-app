@@ -37,7 +37,7 @@ export default function PackSticker({
 	const exist = Boolean(album[section][id]);
 
 	return (
-		<Card>
+		<Card className='max-w-xs'>
 			<CardHeader>
 				<CardTitle>{title}</CardTitle>
 				<CardDescription>{type}</CardDescription>
@@ -59,14 +59,7 @@ export default function PackSticker({
 							Discard
 						</Button>
 					) : (
-						<Button
-							onClick={() => {
-								onAdd();
-								setCtaWasUsed(true);
-							}}
-						>
-							Add to album
-						</Button>
+						<Button onClick={onAdd}>Add to album</Button>
 					)}
 				</div>
 			</CardFooter>

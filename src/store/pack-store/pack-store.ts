@@ -33,6 +33,7 @@ interface PackState {
 		timer: number
 	) => void;
 	tickTimers: () => void;
+	resetPacks: () => void;
 }
 
 const packSlice: StateCreator<
@@ -56,7 +57,7 @@ const packSlice: StateCreator<
 				packs: lockPack(state.packs, packId),
 				isModalOpen: true,
 				openedPackData: newPack,
-				actionsCompleted: false, // Reset actionsCompleted when opening a new pack
+				actionsCompleted: false,
 			}));
 		};
 
@@ -83,6 +84,11 @@ const packSlice: StateCreator<
 		set({
 			isModalOpen: false,
 			openedPackData: null,
+		});
+	},
+	resetPacks: () => {
+		set({
+			packs: createInitialPacks(),
 		});
 	},
 });

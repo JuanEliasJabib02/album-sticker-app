@@ -1,6 +1,7 @@
 export interface Film {
 	id: number;
 	title: string;
+	name: string;
 	episode_id: number;
 	opening_crawl: string;
 	director: string;
