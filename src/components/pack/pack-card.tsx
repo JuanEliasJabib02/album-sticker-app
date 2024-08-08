@@ -1,4 +1,3 @@
-import { generateSinglePack } from '../../lib/helpers/pack-helpers';
 import { Pack } from '../../types/types';
 import { Button } from '../ui/button';
 import {
@@ -33,7 +32,7 @@ export default function PackCard({
 			<CardFooter>
 				<Button
 					variant={'default'}
-					onClick={() => generateSinglePack()}
+					onClick={() => openPack(pack.id)}
 					disabled={pack.state !== 'available'}
 				>
 					{pack.state === 'available' ? 'OPEN' : 'LOCKED'}

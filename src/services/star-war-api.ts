@@ -2,22 +2,26 @@ import { Character, Film, Starship } from './starwar-api-interfaces';
 
 const apiUrl = 'https://swapi.dev/api';
 
+// Some resources return 404 not found so i used allSettled to resolve it.
 export async function fetchFilmById(id: number): Promise<Film> {
 	const response = await fetch(`${apiUrl}/films/${id}/`);
 	if (!response.ok) throw new Error(`Error fetching film with ID ${id}`);
-	return response.json();
+	const film = await response.json();
+	return { ...film, id };
 }
 
 export async function fetchCharacterById(id: number): Promise<Character> {
 	const response = await fetch(`${apiUrl}/people/${id}/`);
 	if (!response.ok) throw new Error(`Error fetching character with ID ${id}`);
-	return response.json();
+	const character = await response.json();
+	return { ...character, id };
 }
 
 export async function fetchStarshipById(id: number): Promise<Starship> {
 	const response = await fetch(`${apiUrl}/starships/${id}/`);
 	if (!response.ok) throw new Error(`Error fetching starship with ID ${id}`);
-	return response.json();
+	const starship = await response.json();
+	return { ...starship, id };
 }
 
 export async function fetchFilmsByIds(ids: number[]): Promise<Film[]> {

@@ -6,10 +6,23 @@ import {
 	lockPack,
 	updatePackState,
 	tickPackTimers,
+	generateSinglePack,
 } from '../../lib/helpers/pack-helpers';
+import {
+	Character,
+	Film,
+	Starship,
+} from '../../services/starwar-api-interfaces';
 
 interface PackState {
 	packs: Pack[];
+	isModalOpen: boolean;
+	openedPackData: {
+		movies: Film[];
+		characters: Character[];
+		starships: Starship[];
+	} | null;
+	closeModal: () => void;
 	initializePacks: () => void;
 	openPack: (packId: number) => void;
 	updatePackState: (
@@ -25,20 +38,25 @@ const packSlice: StateCreator<
 	[['zustand/persist', unknown]]
 > = set => ({
 	packs: createInitialPacks(),
+	isModalOpen: false,
+	openedPackData: null,
 	initializePacks: () => set({ packs: createInitialPacks() }),
+
 	openPack: (packId: number) => {
-		set(state => {
-			const pack = state.packs.find(p => p.id === packId);
-			if (pack && pack.state === 'available') {
-				// Mock function for getting stickers
-				console.log(`Getting stickers for pack ${packId}`);
-				return {
-					packs: lockPack(state.packs, packId),
-				};
-			}
-			return state;
-		});
+		const packOpeningProcess = async () => {
+			const newPack = await generateSinglePack();
+			console.log(newPack);
+
+			set(state => ({
+				packs: lockPack(state.packs, packId),
+				isModalOpen: true,
+				openedPackData: newPack,
+			}));
+		};
+
+		packOpeningProcess();
 	},
+
 	updatePackState: (
 		packId: number,
 		newState: 'available' | 'locked' | 'opened',
@@ -48,10 +66,18 @@ const packSlice: StateCreator<
 			packs: updatePackState(state.packs, packId, newState, timer),
 		}));
 	},
+
 	tickTimers: () => {
 		set(state => ({
 			packs: tickPackTimers(state.packs),
 		}));
+	},
+
+	closeModal: () => {
+		set({
+			isModalOpen: false,
+			openedPackData: null,
+		});
 	},
 });
 

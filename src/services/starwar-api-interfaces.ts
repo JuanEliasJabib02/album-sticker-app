@@ -1,4 +1,5 @@
 export interface Film {
+	id: number;
 	title: string;
 	episode_id: number;
 	opening_crawl: string;
@@ -20,6 +21,7 @@ export interface FilmResponse {
 }
 
 export interface Starship {
+	id: number;
 	name: string;
 	model: string;
 	manufacturer: string;
@@ -45,6 +47,7 @@ export interface StarshipResponse {
 }
 
 export interface Character {
+	id: number;
 	name: string;
 	height: string;
 	mass: string;
