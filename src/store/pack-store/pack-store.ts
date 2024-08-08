@@ -22,6 +22,8 @@ interface PackState {
 		characters: Character[];
 		starships: Starship[];
 	} | null;
+	actionsCompleted: boolean;
+	setActionsCompleted: (completed: boolean) => void;
 	closeModal: () => void;
 	initializePacks: () => void;
 	openPack: (packId: number) => void;
@@ -40,6 +42,9 @@ const packSlice: StateCreator<
 	packs: createInitialPacks(),
 	isModalOpen: false,
 	openedPackData: null,
+	actionsCompleted: false,
+	setActionsCompleted: (completed: boolean) =>
+		set({ actionsCompleted: completed }),
 	initializePacks: () => set({ packs: createInitialPacks() }),
 
 	openPack: (packId: number) => {
@@ -51,6 +56,7 @@ const packSlice: StateCreator<
 				packs: lockPack(state.packs, packId),
 				isModalOpen: true,
 				openedPackData: newPack,
+				actionsCompleted: false, // Reset actionsCompleted when opening a new pack
 			}));
 		};
 

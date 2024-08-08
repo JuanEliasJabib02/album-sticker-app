@@ -1,20 +1,20 @@
 import { create, StateCreator } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { Album } from '../../types/types';
+import { Album, Sticker } from '../../types/types';
 import { createInitialAlbum } from '../../lib/utils';
 
 interface AlbumState {
 	album: Album;
 	isInitialized: boolean;
 	initializeAlbum: () => void;
+	addStickerToAlbum: (section: keyof Album, sticker: Sticker) => void;
+	removeStickerFromAlbum: (section: keyof Album, stickerId: number) => void;
 }
 
 const albumSlice: StateCreator<
 	AlbumState,
 	[['zustand/persist', unknown]]
 > = set => ({
-	/* Type solution that i found on stack overflow
-	https://stackoverflow.com/questions/76744178/typescript-error-with-zustands-persist-middleware-and-statecreator-in-react-app*/
 	album: createInitialAlbum(),
 	isInitialized: false,
 	initializeAlbum: () =>
@@ -27,6 +27,28 @@ const albumSlice: StateCreator<
 			}
 			return state;
 		}),
+	addStickerToAlbum: (section, sticker) => {
+		set(state => ({
+			album: {
+				...state.album,
+				[section]: {
+					...state.album[section],
+					[sticker.id]: sticker,
+				},
+			},
+		}));
+	},
+	removeStickerFromAlbum: (section, stickerId) => {
+		set(state => ({
+			album: {
+				...state.album,
+				[section]: {
+					...state.album[section],
+					[stickerId]: null,
+				},
+			},
+		}));
+	},
 });
 
 export const useAlbumStore = create<AlbumState>()(
