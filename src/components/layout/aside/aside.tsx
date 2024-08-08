@@ -9,7 +9,7 @@ const navItems = [
 
 export default function Aside() {
 	return (
-		<aside className='w-[20%] p-4 lg:block hidden border-r-2 border-r-border'>
+		<aside className='w-[256px] fixed hidden h-screen p-4 lg:block  border-r-2 border-r-border'>
 			<div className='py-12 flex justify-center items-center'>
 				<img
 					src='/logo.png'

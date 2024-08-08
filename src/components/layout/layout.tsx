@@ -6,7 +6,7 @@ export default function Layout() {
 		<div className='flex relative min-h-screen bg-background max-w-screen-xl'>
 			<Aside />
 
-			<main className='flex-1 p-5'>
+			<main className='flex-1 p-5 md:pl-[300px]'>
 				<Outlet />
 			</main>
 		</div>
