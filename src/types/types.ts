@@ -15,3 +15,9 @@ export const initialAlbumState: Album = {
 	characters: {},
 	ships: {},
 };
+
+export interface Pack {
+	id: number;
+	state: 'available' | 'locked';
+	timer: number;
+}
