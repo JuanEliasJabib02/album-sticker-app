@@ -1,5 +1,5 @@
 import { usePackStore } from '../../store/pack-store/pack-store';
-import { useAlbumStore } from '../../store/album-store/album-store'; // Asegúrate de importar tu AlbumStore
+import { useAlbumStore } from '../../store/album-store/album-store';
 import { Button } from '../ui/button';
 import {
 	Dialog,
@@ -23,12 +23,12 @@ export default function PackModal() {
 
 	const handleAddSticker = (section: keyof Album, sticker: Sticker) => {
 		addStickerToAlbum(section, sticker);
-		setActionsCompleted(true); // Assuming adding a sticker means all actions are complete, adjust as needed
+		setActionsCompleted(true);
 	};
 
 	const handleRemoveSticker = (section: keyof Album, stickerId: number) => {
 		removeStickerFromAlbum(section, stickerId);
-		setActionsCompleted(true); // Assuming removing a sticker means all actions are complete, adjust as needed
+		setActionsCompleted(true);
 	};
 
 	const handleCloseModal = () => {
@@ -60,7 +60,7 @@ export default function PackModal() {
 											name: movie.title,
 											category: 'Regular',
 										})
-									} // Adjust category as needed
+									}
 									onRemove={() => handleRemoveSticker('movies', movie.id)}
 								/>
 							))}
@@ -76,7 +76,7 @@ export default function PackModal() {
 											name: character.name,
 											category: 'Regular',
 										})
-									} // Adjust category as needed
+									}
 									onRemove={() =>
 										handleRemoveSticker('characters', character.id)
 									}
@@ -94,7 +94,7 @@ export default function PackModal() {
 											name: starship.name,
 											category: 'Regular',
 										})
-									} // Adjust category as needed
+									}
 									onRemove={() => handleRemoveSticker('ships', starship.id)}
 								/>
 							))}

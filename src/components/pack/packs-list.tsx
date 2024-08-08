@@ -1,4 +1,3 @@
-// src/components/pack/PackList.tsx
 import { useEffect } from 'react';
 import { usePackStore } from '../../store/pack-store/pack-store';
 import PackCard from './pack-card';
