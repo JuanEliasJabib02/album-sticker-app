@@ -2,14 +2,14 @@
 Characters: 82 stickers
 Ships: 36 stickers */
 
-import { useAlbumStore } from '../../store/album-store';
+import { useAlbumStore } from '../../store/album-store/album-store';
 import StickerList from '../shared/sticker-list';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 export default function Album() {
 	const { album } = useAlbumStore();
 
-	console.log(album);
+	console.log(album, 'album');
 
 	return (
 		<Tabs defaultValue='movies'>

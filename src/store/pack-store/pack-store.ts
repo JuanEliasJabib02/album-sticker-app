@@ -1,11 +1,12 @@
 import { create, StateCreator } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { Pack } from '../types/types';
+import { Pack } from '../../types/types';
 import {
 	createInitialPacks,
 	lockPack,
 	updatePackState,
-} from '../lib/helpers/pack-helpers';
+	tickPackTimers,
+} from '../../lib/helpers/pack-helpers';
 
 interface PackState {
 	packs: Pack[];
@@ -13,9 +14,10 @@ interface PackState {
 	openPack: (packId: number) => void;
 	updatePackState: (
 		packId: number,
-		newState: 'available' | 'locked',
+		newState: 'available' | 'locked' | 'opened',
 		timer: number
 	) => void;
+	tickTimers: () => void;
 }
 
 const packSlice: StateCreator<
@@ -39,11 +41,16 @@ const packSlice: StateCreator<
 	},
 	updatePackState: (
 		packId: number,
-		newState: 'available' | 'locked',
+		newState: 'available' | 'locked' | 'opened',
 		timer: number
 	) => {
 		set(state => ({
 			packs: updatePackState(state.packs, packId, newState, timer),
+		}));
+	},
+	tickTimers: () => {
+		set(state => ({
+			packs: tickPackTimers(state.packs),
 		}));
 	},
 });

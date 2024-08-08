@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { useAlbumStore } from './album-store';
-import { createInitialAlbum } from '../lib/utils';
+import { createInitialAlbum } from '../../lib/utils';
 
 describe('useAlbumStore', () => {
 	it('should initialize album state correctly', () => {

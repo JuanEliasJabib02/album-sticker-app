@@ -18,6 +18,6 @@ export const initialAlbumState: Album = {
 
 export interface Pack {
 	id: number;
-	state: 'available' | 'locked';
+	state: 'available' | 'locked' | 'opened';
 	timer: number;
 }

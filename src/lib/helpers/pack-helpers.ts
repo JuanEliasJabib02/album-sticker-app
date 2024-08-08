@@ -13,10 +13,23 @@ export const createInitialPacks = (): Pack[] => {
 	];
 };
 
+export const lockPack = (packs: Pack[], packId: number): Pack[] => {
+	return packs.map(pack => ({
+		...pack,
+		state:
+			pack.id === packId
+				? 'opened'
+				: pack.state === 'opened'
+				? 'opened'
+				: 'locked',
+		timer: pack.id === packId ? 0 : 60,
+	}));
+};
+
 export const updatePackState = (
 	packs: Pack[],
 	packId: number,
-	newState: 'available' | 'locked',
+	newState: 'available' | 'locked' | 'opened',
 	timer: number
 ): Pack[] => {
 	return packs.map(pack =>
@@ -24,6 +37,13 @@ export const updatePackState = (
 	);
 };
 
-export const lockPack = (packs: Pack[], packId: number): Pack[] => {
-	return updatePackState(packs, packId, 'locked', 60);
+export const tickPackTimers = (packs: Pack[]): Pack[] => {
+	return packs.map(pack => {
+		if (pack.state === 'locked' && pack.timer > 0) {
+			return { ...pack, timer: pack.timer - 1 };
+		} else if (pack.timer === 0 && pack.state === 'locked') {
+			return { ...pack, state: 'available', timer: 0 };
+		}
+		return pack;
+	});
 };

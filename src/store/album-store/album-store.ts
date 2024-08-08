@@ -1,7 +1,7 @@
 import { create, StateCreator } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { Album } from '../types/types';
-import { createInitialAlbum } from '../lib/utils';
+import { Album } from '../../types/types';
+import { createInitialAlbum } from '../../lib/utils';
 
 interface AlbumState {
 	album: Album;
