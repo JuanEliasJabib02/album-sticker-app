@@ -11,14 +11,14 @@ export default function StickerCard() {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>Card Title</CardTitle>
-				<CardDescription>Card Description</CardDescription>
+				<CardTitle>A New Hope</CardTitle>
+				<CardDescription>Movie</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<p>Card Content</p>
+				<p>ID number: 1</p>
 			</CardContent>
 			<CardFooter>
-				<p>Card Footer</p>
+				<p className='p-2 bg-purple-500 rounded-lg'>Special</p>
 			</CardFooter>
 		</Card>
 	);
